@@ -1,7 +1,7 @@
 {
   "name": "Naver Video Downloader",
-  "version": "0.1",
-  "description": "Download a video streaming in Naver.",
+  "version": "0.2",
+  "description": "Download video sources from Naver embedded video player.",
   "manifest_version": 2,
   "background": {
     "scripts": [
