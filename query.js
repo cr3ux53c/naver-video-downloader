@@ -1,8 +1,3 @@
-// if ((document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("iframe").src) !== ""){
-//     document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("script.__se_module_data").getAttribute("data-module")
-// }else{
-//     document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("iframe").src
-// }
 console.log('in file')
 if (document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("iframe").src !== ""){
     console.log('Type: iframe\'s URI')

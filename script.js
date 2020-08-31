@@ -1,15 +1,9 @@
 chrome.tabs.executeScript({
-    // code: 'document.querySelectorAll(\'iframe#cafe_main\')[0].contentWindow.document.body.querySelector("iframe").src'
-    // code: 'document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("script.__se_module_data").getAttribute("data-module")'
-    // code: 'document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("iframe").src'
     file: '/query.js'
 }, function (res) {
     console.log('in Callback')
-    console.log(Object.prototype.toString.call(res[0]) === '[object Array]')
-    console.log(res)
 
-    if (true) {
-
+    if (res[0].toString().substr(0, 4) === 'http') {
         console.log(res[0].split('?')[1].split('&'));
         search_param = new URLSearchParams(res[0].split('?')[1]);
         qs_vid = search_param.get("vid")
