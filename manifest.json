@@ -10,8 +10,6 @@
     "persistent": false
   },
   "permissions": [
-    "storage",
-    "declarativeContent",
     "activeTab"
   ],
   "page_action": {
