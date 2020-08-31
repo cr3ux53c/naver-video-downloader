@@ -1,21 +1,31 @@
 chrome.tabs.executeScript({
     // code: 'document.querySelectorAll(\'iframe#cafe_main\')[0].contentWindow.document.body.querySelector("iframe").src'
-    code: 'document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("script.__se_module_data").getAttribute("data-module")'
+    // code: 'document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("script.__se_module_data").getAttribute("data-module")'
+    // code: 'document.querySelectorAll("iframe#cafe_main")[0].contentWindow.document.body.querySelector("iframe").src'
+    file: '/query.js'
 }, function (res) {
-    res = JSON.parse(res)['data']
+    console.log('in Callback')
+    console.log(Object.prototype.toString.call(res[0]) === '[object Array]')
     console.log(res)
-    // console.log(res[0].split('?')[1].split('&'));
-    // search_param = new URLSearchParams(res[0].split('?')[1]);
-    // console.log(search_param.get("vid"));
-    // console.log(search_param.get("inKey"));
-    console.log(res['vid'])
-    console.log(res['inkey'])
+
+    if (true) {
+
+        console.log(res[0].split('?')[1].split('&'));
+        search_param = new URLSearchParams(res[0].split('?')[1]);
+        qs_vid = search_param.get("vid")
+        qs_inkey = search_param.get("inKey")
+    } else {
+        res = JSON.parse(res)['data']
+        console.log(res)
+        qs_vid = res['vid']
+        qs_inkey = res['inkey']
+    }
 
     let query_string = new URLSearchParams('key=&videoId=')
-    query_string.set('videoId', res['vid'])
-    query_string.set('key', res['inkey'])
-    query_string = 'https://apis.naver.com/rmcnmv/rmcnmv/vod/play/v2.0/' + res['vid'] + '?' + query_string.toString()
-    console.log(query_string)
+    query_string.set('videoId', qs_vid)
+    query_string.set('key', qs_inkey)
+    query_string = 'https://apis.naver.com/rmcnmv/rmcnmv/vod/play/v2.0/' + qs_vid + '?' + query_string.toString()
+    console.log('query: ' + query_string)
     fetch_json(query_string)
 });
 
@@ -31,7 +41,7 @@ function fetch_json(url) {
         }
     }).then(
         function (res) {
-            console.log(res.json().then(
+            res.json().then(
                 function (res) {
                     console.log(res.videos)
                     console.log(res.videos.list)
@@ -47,7 +57,7 @@ function fetch_json(url) {
                         document.getElementById('btn_space').appendChild(download_link)
                         document.getElementById('btn_space').appendChild(document.createElement('br'))
                     }
-                })
+                }
             )
         }
     )
