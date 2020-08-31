@@ -10,7 +10,8 @@
     "persistent": false
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "declarativeContent"
   ],
   "page_action": {
     "default_popup": "popup.html",
