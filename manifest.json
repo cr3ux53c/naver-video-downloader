@@ -1,0 +1,32 @@
+{
+  "name": "Naver Video Downloader",
+  "version": "0.1",
+  "description": "Download a video streaming in Naver.",
+  "manifest_version": 2,
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "storage",
+    "declarativeContent",
+    "activeTab"
+  ],
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "res/img/naver_tv_logo_16.png",
+      "32": "res/img/naver_tv_logo_32.png",
+      "48": "res/img/naver_tv_logo_48.png",
+      "128": "res/img/naver_tv_logo_128.png"
+    }
+  },
+  "icons": {
+    "16": "res/img/naver_tv_logo_16.png",
+    "32": "res/img/naver_tv_logo_32.png",
+    "48": "res/img/naver_tv_logo_48.png",
+    "128": "res/img/naver_tv_logo_128.png"
+  }
+}
