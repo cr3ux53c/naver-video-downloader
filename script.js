@@ -1,14 +1,15 @@
 chrome.tabs.executeScript({
     file: '/query.js'
 }, function (res) {
-    console.log('in Callback')
-
+    console.log('callback')
     if (res[0].toString().substr(0, 4) === 'http') {
+        console.log('Type: URI')
         console.log(res[0].split('?')[1].split('&'));
         search_param = new URLSearchParams(res[0].split('?')[1]);
         qs_vid = search_param.get("vid")
         qs_inkey = search_param.get("inKey")
     } else {
+        console.log('Type: JSON')
         res = JSON.parse(res)['data']
         console.log(res)
         qs_vid = res['vid']
@@ -47,7 +48,7 @@ function fetch_json(url) {
                         let download_link = document.createElement('a');
                         download_link.setAttribute('href', res.videos.list[i].source);
                         download_link.setAttribute('target', '_blank');
-                        download_link.appendChild(document.createTextNode('Download video as a' + res.videos.list[i].encodingOption.name));
+                        download_link.appendChild(document.createTextNode('Open video as ' + res.videos.list[i].encodingOption.name));
                         document.getElementById('btn_space').appendChild(download_link)
                         document.getElementById('btn_space').appendChild(document.createElement('br'))
                     }
