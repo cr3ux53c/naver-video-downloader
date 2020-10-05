@@ -17,7 +17,11 @@ if (window.location.hostname === 'cafe.naver.com'){
     }
 }else if (window.location.hostname === 'blog.naver.com'){
     console.log('Blog')
-    result = document.querySelectorAll("div#postListBody script.__se_module_data")[0].getAttribute('data-module')
+    if (document.querySelectorAll("iframe#mainFrame").length === 0){
+        result = document.querySelectorAll("div#postListBody script.__se_module_data")[0].getAttribute('data-module')
+    }else{
+        result = document.querySelectorAll("iframe#mainFrame")[0].contentWindow.document.body.querySelectorAll("div#postListBody script.__se_module_data")[0].getAttribute('data-module')
+    }
 }else{
     console.assert(false)
 }
